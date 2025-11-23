@@ -1,0 +1,37 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Run tests with coverage
+        run: pnpm test
+      
+      - name: Check coverage
+        run: |
+          COVERAGE=$(grep -oP '(?<=<span class="percentage">)[^<]*' coverage/lcov-report/index.html | head -1 | sed 's/%//')
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "Coverage is $COVERAGE%, which is below 80%"
+            exit 1
+          fi
+          echo "Coverage is $COVERAGE% ✓"
