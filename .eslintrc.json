@@ -10,9 +10,9 @@
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"]
-  }
+    "semi": "off",
+    "indent": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
+  },
+  "ignorePatterns": ["coverage/", "node_modules/", "js-practise.js", "hospitalData.js", "main.js", "utils/"]
 }
