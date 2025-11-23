@@ -139,7 +139,7 @@ This lab covers:
 - ✓ Testing with Jest and Supertest
 - ✓ Code quality with ESLint
 - ✓ CI/CD with GitHub Actions
-- ✓ API testing with Postman
+- ✓ API testing with Bruno
 
 ## Next Steps
 
