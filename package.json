@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "jest --coverage"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "keywords": [],
   "author": "",
