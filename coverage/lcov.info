@@ -1,5 +1,5 @@
 TN:
-SF:routes/appointments.js
+SF:routes\appointments.js
 FN:10,(anonymous_0)
 FN:13,(anonymous_1)
 FNF:2
@@ -28,7 +28,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:routes/doctors.js
+SF:routes\doctors.js
 FN:8,(anonymous_0)
 FN:10,(anonymous_1)
 FNF:2
@@ -55,7 +55,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:routes/metrics.js
+SF:routes\metrics.js
 FN:5,(anonymous_0)
 FNF:1
 FNH:1
@@ -70,7 +70,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:routes/patients.js
+SF:routes\patients.js
 FN:8,(anonymous_0)
 FN:10,(anonymous_1)
 FNF:2
@@ -97,7 +97,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:src/app.js
+SF:src\app.js
 FNF:0
 FNH:0
 DA:7,4
@@ -112,7 +112,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src/server.js
+SF:src\server.js
 FN:5,(anonymous_0)
 FNF:1
 FNH:0
