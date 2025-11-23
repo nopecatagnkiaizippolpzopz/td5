@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1763902177012" clover="3.2.0">
-  <project timestamp="1763902177012" name="All files">
+<coverage generated="1763903750607" clover="3.2.0">
+  <project timestamp="1763903750607" name="All files">
     <metrics statements="43" coveredstatements="39" conditionals="14" coveredconditionals="13" methods="8" coveredmethods="7" elements="65" coveredelements="59" complexity="0" loc="43" ncloc="43" packages="2" files="6" classes="6"/>
     <package name="routes">
       <metrics statements="34" coveredstatements="33" conditionals="14" coveredconditionals="13" methods="7" coveredmethods="7"/>
@@ -21,14 +21,14 @@
         <metrics statements="10" coveredstatements="9" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="cond" truecount="3" falsecount="1"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="16" count="0" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
       </file>
       <file name="metrics.js" path="C:\Users\aurel\Downloads\TD5 - software\td5\routes\metrics.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -41,14 +41,14 @@
         <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="2" type="cond" truecount="4" falsecount="0"/>
-        <line num="13" count="1" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="cond" truecount="4" falsecount="0"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src">
