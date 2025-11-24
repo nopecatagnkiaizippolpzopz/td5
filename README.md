@@ -1,20 +1,22 @@
-# Healthcare API - Lab 5
+# Healthcare API - Labs 5 & 6
 
-A Node.js/Express REST API for managing doctors, patients, and appointments in a hospital system.
+A Node.js/Express REST API for managing doctors, patients, and appointments in a hospital system with MongoDB persistence.
 
 ## Project Overview
 
 This project implements a full Healthcare Management API with the following features:
-- **Doctors Management**: Create and retrieve doctors
-- **Patients Management**: Create and retrieve patients  
-- **Appointments**: Schedule appointments between doctors and patients
+- **Doctors Management**: Full CRUD operations (Create, Read, Update, Delete)
+- **Patients Management**: Full CRUD operations
+- **Appointments**: Full CRUD operations with doctor/patient references
 - **Metrics**: Monitor system health and hospital status
+- **MongoDB Integration**: Persistent data storage with MongoDB Atlas
 
 ## Setup
 
 ### Prerequisites
 - Node.js 18+
 - pnpm 10+
+- MongoDB Atlas account (or local MongoDB instance)
 
 ### Installation
 
@@ -22,13 +24,41 @@ This project implements a full Healthcare Management API with the following feat
 pnpm install
 ```
 
+### Environment Configuration
+
+1. Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+2. Edit `.env` and add your MongoDB connection string:
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?appName=YourApp
+```
+
+## Database Setup
+
+### Seed the Database
+
+Populate MongoDB with initial data (5 doctors, 5 patients, 5 appointments):
+
+```bash
+pnpm seed
+```
+
+This will:
+- Clear existing collections
+- Insert 5 sample doctors
+- Insert 5 sample patients
+- Insert 5 sample appointments with references
+
 ## Running the Application
 
 ### Development Mode
 ```bash
 pnpm dev
 ```
-Server will run on `http://localhost:3000`
+Server will run on `http://localhost:3000` and connect to MongoDB
 
 ### Production Mode
 ```bash
@@ -57,26 +87,46 @@ pnpm lint
 
 ## API Endpoints
 
-### Doctors
+### Doctors (Full CRUD)
 - `GET /api/doctors` - Get all doctors
+- `GET /api/doctors/:id` - Get doctor by ID
 - `POST /api/doctors` - Create a new doctor
   ```json
   { "name": "Dr. Name", "specialty": "Specialty" }
   ```
+- `PUT /api/doctors/:id` - Update a doctor
+  ```json
+  { "name": "Dr. Updated", "specialty": "New Specialty" }
+  ```
+- `DELETE /api/doctors/:id` - Delete a doctor
 
-### Patients
+### Patients (Full CRUD)
 - `GET /api/patients` - Get all patients
+- `GET /api/patients/:id` - Get patient by ID
 - `POST /api/patients` - Create a new patient
   ```json
   { "name": "Patient Name", "age": 30 }
   ```
+- `PUT /api/patients/:id` - Update a patient
+  ```json
+  { "name": "Updated Name", "age": 31 }
+  ```
+- `DELETE /api/patients/:id` - Delete a patient
 
-### Appointments
+### Appointments (Full CRUD)
 - `GET /api/appointments` - Get all appointments
+- `GET /api/appointments/:id` - Get appointment by ID
 - `POST /api/appointments` - Create an appointment
   ```json
-  { "doctorId": 1, "patientId": 1, "date": "2025-04-15", "time": "11:00" }
+  { 
+    "doctorId": "507f1f77bcf86cd799439011", 
+    "patientId": "507f191e810c19729de860ea",
+    "date": "2025-04-15", 
+    "time": "11:00" 
+  }
   ```
+- `PUT /api/appointments/:id` - Update an appointment
+- `DELETE /api/appointments/:id` - Delete an appointment
 
 ### Metrics
 - `GET /api/metrics` - Get system metrics and hospital status
@@ -86,16 +136,19 @@ pnpm lint
 ```
 ├── src/
 │   ├── app.js          # Express app configuration
-│   └── server.js       # Server entry point
+│   ├── server.js       # Server entry point
+│   └── db.js           # MongoDB connection management
 ├── routes/
-│   ├── doctors.js      # Doctor routes
-│   ├── patients.js     # Patient routes
-│   ├── appointments.js # Appointment routes
+│   ├── doctors.js      # Doctor routes (CRUD with MongoDB)
+│   ├── patients.js     # Patient routes (CRUD with MongoDB)
+│   ├── appointments.js # Appointment routes (CRUD with MongoDB)
 │   └── metrics.js      # Metrics routes
 ├── test/
 │   └── routes/         # API tests
 ├── bruno/              # Bruno API collection
 │   └── Healthcare API/ # Request files (.bru)
+├── seed.js             # Database seeding script
+├── .env.example        # Environment variables template
 ├── jest.config.js      # Jest configuration
 ├── .eslintrc.json      # ESLint configuration
 └── package.json        # Dependencies and scripts
@@ -122,7 +175,9 @@ Steps:
 
 ## Technologies Used
 
-- **Express.js**: Web framework
+- **Express.js 5.1**: Web framework
+- **MongoDB 7.0**: NoSQL database
+- **dotenv**: Environment variable management
 - **Jest**: Testing framework
 - **Supertest**: HTTP assertion library
 - **ESLint**: Code quality
@@ -130,7 +185,7 @@ Steps:
 
 ## Learning Outcomes
 
-This lab covers:
+### Lab 5 - REST API Fundamentals
 - ✓ JavaScript fundamentals (variables, arrays, objects, functions)
 - ✓ ES6+ features (arrow functions, destructuring, template literals)
 - ✓ Async/await and Promises
@@ -141,10 +196,20 @@ This lab covers:
 - ✓ CI/CD with GitHub Actions
 - ✓ API testing with Bruno
 
+### Lab 6 - MongoDB Integration
+- ✓ MongoDB connection management
+- ✓ CRUD operations with MongoDB driver
+- ✓ ObjectId handling and references
+- ✓ Database seeding scripts
+- ✓ Environment variable configuration
+- ✓ Async/await with database operations
+- ✓ Error handling with MongoDB
+
 ## Next Steps
 
-1. Add database persistence (MongoDB, PostgreSQL)
-2. Implement authentication and authorization
-3. Add input validation and error handling
-4. Create additional routes (GET by ID, DELETE, UPDATE)
-5. Add API documentation with Swagger/OpenAPI
+1. Implement authentication and authorization (JWT)
+2. Add input validation with Joi or Zod
+3. Implement data aggregation queries
+4. Add pagination and filtering
+5. Create API documentation with Swagger/OpenAPI
+6. Add indexes for performance optimization

@@ -1,7 +1,23 @@
 import request from "supertest";
-import app from "../../src/app.js";
+import app, { initializeApp } from "../../src/app.js";
+import { closeDB, getDB } from "../../src/db.js";
 
 describe("Patients API", () => {
+    let createdPatientId;
+
+    beforeAll(async () => {
+        await initializeApp();
+    });
+
+    afterAll(async () => {
+        // Clean up test data
+        if (createdPatientId) {
+            const db = getDB();
+            await db.collection("patients").deleteMany({ name: "Jane Doe" });
+        }
+        await closeDB();
+    });
+
     it("GET /api/patients should return an array", async () => {
         const res = await request(app).get("/api/patients");
         expect(res.status).toBe(200);
@@ -14,9 +30,11 @@ describe("Patients API", () => {
             .send({ name: "Jane Doe", age: 28 });
         
         expect(res.status).toBe(201);
-        expect(res.body).toHaveProperty("id");
+        expect(res.body).toHaveProperty("_id");
         expect(res.body.name).toBe("Jane Doe");
         expect(res.body.age).toBe(28);
+        
+        createdPatientId = res.body._id;
     });
 
     it("POST /api/patients should fail without required fields", async () => {

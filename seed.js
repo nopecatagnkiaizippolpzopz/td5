@@ -1,4 +1,8 @@
+import dotenv from "dotenv";
 import { connectDB, closeDB } from "./src/db.js";
+
+// Load environment variables
+dotenv.config({ path: ".env.aurel" });
 
 async function seedDatabase() {
   try {
