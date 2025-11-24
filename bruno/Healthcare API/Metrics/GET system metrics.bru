@@ -1,0 +1,29 @@
+meta {
+  name: GET system metrics
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/metrics
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response has uptime property", function() {
+    expect(res.body).to.have.property("uptime");
+  });
+  
+  test("Response has hospital property", function() {
+    expect(res.body).to.have.property("hospital");
+  });
+  
+  test("Hospital name is La Charité", function() {
+    expect(res.body.hospital.name).to.equal("La Charité");
+  });
+}

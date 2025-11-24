@@ -1,0 +1,32 @@
+meta {
+  name: POST new patient
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/patients
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Jane Smith",
+    "age": 35
+  }
+}
+
+tests {
+  test("Status code is 201", function() {
+    expect(res.status).to.equal(201);
+  });
+  
+  test("Response has id property", function() {
+    expect(res.body).to.have.property("id");
+  });
+  
+  test("Response has correct name", function() {
+    expect(res.body.name).to.equal("Jane Smith");
+  });
+}

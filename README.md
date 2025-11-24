@@ -94,7 +94,8 @@ pnpm lint
 │   └── metrics.js      # Metrics routes
 ├── test/
 │   └── routes/         # API tests
-├── postman/            # Postman collection
+├── bruno/              # Bruno API collection
+│   └── Healthcare API/ # Request files (.bru)
 ├── jest.config.js      # Jest configuration
 ├── .eslintrc.json      # ESLint configuration
 └── package.json        # Dependencies and scripts
@@ -108,16 +109,16 @@ GitHub Actions workflow runs on every push and pull request:
 3. Execute tests with coverage report
 4. Verify coverage is ≥ 80%
 
-## Testing with Postman
+## Testing with Bruno
 
-Import the Postman collection from `postman/Healthcare_API_Postman_Collection.json` to manually test all endpoints.
+Open the Bruno collection from `bruno/Healthcare API/` to manually test all endpoints.
 
 Steps:
-1. Open Postman
-2. Click "Import" 
-3. Select the collection file
+1. Download and install Bruno from https://www.usebruno.com/
+2. Open Bruno
+3. Click "Open Collection" and select the `bruno/Healthcare API` folder
 4. Ensure server is running on `http://localhost:3000`
-5. Execute requests and verify responses
+5. Execute requests and verify responses with built-in tests
 
 ## Technologies Used
 
@@ -138,7 +139,7 @@ This lab covers:
 - ✓ Testing with Jest and Supertest
 - ✓ Code quality with ESLint
 - ✓ CI/CD with GitHub Actions
-- ✓ API testing with Postman
+- ✓ API testing with Bruno
 
 ## Next Steps
 

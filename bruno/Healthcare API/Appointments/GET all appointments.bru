@@ -1,0 +1,21 @@
+meta {
+  name: GET all appointments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/appointments
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status code is 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Response is an array", function() {
+    expect(Array.isArray(res.body)).to.be.true;
+  });
+}

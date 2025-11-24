@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
 let patients = [
-    { id: 1, name: "Alice", age: 30 },
-    { id: 2, name: "John", age: 45 }
+    { id: 1, name: "Alice", age: 34 },
+    { id: 2, name: "John", age: 45 },
+    { id: 3, name: "Marie", age: 29 }
 ];
 // GET all patients
 router.get("/", (req, res) => res.json(patients));

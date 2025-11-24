@@ -1,0 +1,32 @@
+meta {
+  name: POST new doctor
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/doctors
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Dr. Julie",
+    "specialty": "Neurology"
+  }
+}
+
+tests {
+  test("Status code is 201", function() {
+    expect(res.status).to.equal(201);
+  });
+  
+  test("Response has id property", function() {
+    expect(res.body).to.have.property("id");
+  });
+  
+  test("Response has correct name", function() {
+    expect(res.body.name).to.equal("Dr. Julie");
+  });
+}

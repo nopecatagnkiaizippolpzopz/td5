@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -18,8 +18,10 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@usebruno/cli": "^2.14.2",
+    "cross-env": "^10.1.0",
+    "eslint": "^8.0.0",
     "jest": "^29.0.0",
-    "supertest": "^6.3.0",
-    "eslint": "^8.0.0"
+    "supertest": "^6.3.0"
   }
 }
