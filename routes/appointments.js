@@ -1,32 +1,42 @@
 import express from "express";
+import { getDB } from "../src/db.js";
+import { ObjectId } from "mongodb";
+
 const router = express.Router();
 
-let appointments = [
-    { id: 1, doctorId: 1, patientId: 1, date: "2025-03-15", time: "10:00" },
-    { id: 2, doctorId: 2, patientId: 2, date: "2025-03-16", time: "14:30" }
-];
-
 // GET all appointments
-router.get("/", (req, res) => res.json(appointments));
+router.get("/", async (req, res) => {
+    try {
+        const db = getDB();
+        const appointments = await db.collection("appointments").find({}).toArray();
+        res.json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 // POST new appointment
-router.post("/", (req, res) => {
-    const { doctorId, patientId, date, time } = req.body;
-    
-    if (!doctorId || !patientId || !date || !time) {
-        return res.status(400).json({ error: "Missing required fields" });
+router.post("/", async (req, res) => {
+    try {
+        const { doctorId, patientId, date, time } = req.body;
+        
+        if (!doctorId || !patientId || !date || !time) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+        
+        const db = getDB();
+        const newAppointment = { 
+            doctorId: new ObjectId(doctorId),
+            patientId: new ObjectId(patientId),
+            date, 
+            time 
+        };
+        
+        const result = await db.collection("appointments").insertOne(newAppointment);
+        res.status(201).json({ _id: result.insertedId, ...newAppointment });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    
-    const newAppointment = { 
-        id: appointments.length + 1, 
-        doctorId, 
-        patientId, 
-        date, 
-        time 
-    };
-    
-    appointments.push(newAppointment);
-    res.status(201).json(newAppointment);
 });
 
 export default router;

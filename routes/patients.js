@@ -1,19 +1,34 @@
 import express from "express";
+import { getDB } from "../src/db.js";
+import { ObjectId } from "mongodb";
+
 const router = express.Router();
-let patients = [
-    { id: 1, name: "Alice", age: 34 },
-    { id: 2, name: "John", age: 45 },
-    { id: 3, name: "Marie", age: 29 }
-];
+
 // GET all patients
-router.get("/", (req, res) => res.json(patients));
-// POST new patient
-router.post("/", (req, res) => {
-    const { name, age } = req.body;
-    if (!name || !age)
-        return res.status(400).json({ error: "Missing fields" });
-    const newPatient = { id: patients.length + 1, name, age };
-    patients.push(newPatient);
-    res.status(201).json(newPatient);
+router.get("/", async (req, res) => {
+    try {
+        const db = getDB();
+        const patients = await db.collection("patients").find({}).toArray();
+        res.json(patients);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
+
+// POST new patient
+router.post("/", async (req, res) => {
+    try {
+        const { name, age } = req.body;
+        if (!name || !age)
+            return res.status(400).json({ error: "Missing fields" });
+        
+        const db = getDB();
+        const newPatient = { name, age };
+        const result = await db.collection("patients").insertOne(newPatient);
+        res.status(201).json({ _id: result.insertedId, ...newPatient });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 export default router;
