@@ -1,6 +1,9 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import dotenv from 'dotenv';
 
-const uri = "mongodb+srv://automatedactions_db_user:Fd38nCL7p30Qbq7L@cluster0.wkg4ask.mongodb.net/?appName=Cluster0";
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
