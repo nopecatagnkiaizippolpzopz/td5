@@ -1,7 +1,7 @@
 import express from "express";
-import doctorsRouter from "../routes/doctors.js";
-import patientsRouter from "../routes/patients.js";
-import appointmentsRouter from "../routes/appointments.js";
+import doctorsRouter from "./routes/doctors.js";
+import patientsRouter from "./routes/patients.js";
+import appointmentsRouter from "./routes/appointments.js";
 import metricsRouter from "../routes/metrics.js";
 import { connectDB } from "./db.js";
 
@@ -20,11 +20,11 @@ app.use("/api/patients", patientsRouter);
 app.use("/api/appointments", appointmentsRouter);
 app.use("/api/metrics", metricsRouter);
 
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(500).json({
-        error: " Internal server error"
-    })
+app.use((err, req, res, _next) => {
+  console.error(err);
+  res.status(500).json({
+    error: " Internal server error"
+  })
 })
 
 
