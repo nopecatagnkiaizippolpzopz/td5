@@ -135,24 +135,42 @@ pnpm lint
 
 ```
 ├── src/
-│   ├── app.js          # Express app configuration
-│   ├── server.js       # Server entry point
-│   └── db.js           # MongoDB connection management
-├── routes/
-│   ├── doctors.js      # Doctor routes (CRUD with MongoDB)
-│   ├── patients.js     # Patient routes (CRUD with MongoDB)
-│   ├── appointments.js # Appointment routes (CRUD with MongoDB)
-│   └── metrics.js      # Metrics routes
-├── test/
-│   └── routes/         # API tests
-├── bruno/              # Bruno API collection
-│   └── Healthcare API/ # Request files (.bru)
-├── seed.js             # Database seeding script
-├── .env.example        # Environment variables template
-├── jest.config.js      # Jest configuration
-├── .eslintrc.json      # ESLint configuration
-└── package.json        # Dependencies and scripts
+│   ├── app.js              # Express app configuration
+│   ├── server.js           # Server entry point
+│   ├── db.js               # Mongoose connection management
+│   ├── models/             # Mongoose schemas and models
+│   │   ├── doctor.model.js
+│   │   ├── patient.model.js
+│   │   └── appointment.model.js
+│   ├── controllers/        # Business logic (MVC)
+│   │   ├── doctor.controller.js
+│   │   ├── patient.controller.js
+│   │   └── appointment.controller.js
+│   ├── routes/             # Route definitions (MVC)
+│   │   ├── doctors.js
+│   │   ├── patients.js
+│   │   └── appointments.js
+│   └── utils/              # Utility functions
+│       └── validation.js
+├── routes/                 # Legacy metrics route
+│   └── metrics.js
+├── tests/
+│   ├── setup.js            # Vitest configuration
+│   ├── unit/               # Unit tests
+│   │   └── validation.test.js
+│   └── integration/        # Integration tests
+│       ├── doctors.test.js
+│       ├── patients.test.js
+│       └── appointments.test.js
+├── bruno/                  # Bruno API collection
+│   └── Healthcare API/     # Request files (.bru)
+├── seed.js                 # Database seeding with Mongoose
+├── .env.example            # Environment variables template
+├── vitest.config.js        # Vitest configuration
+├── .eslintrc.json          # ESLint configuration
+└── package.json            # Dependencies and scripts
 ```
+
 
 ## CI/CD Pipeline
 
@@ -177,11 +195,13 @@ Steps:
 
 - **Express.js 5.1**: Web framework
 - **MongoDB 7.0**: NoSQL database
+- **Mongoose 9.0**: ODM for MongoDB with schema validation
 - **dotenv**: Environment variable management
-- **Jest**: Testing framework
+- **Vitest**: Modern testing framework
 - **Supertest**: HTTP assertion library
 - **ESLint**: Code quality
 - **Node.js ES Modules**: Modern JavaScript syntax
+
 
 ## Learning Outcomes
 
@@ -204,6 +224,18 @@ Steps:
 - ✓ Environment variable configuration
 - ✓ Async/await with database operations
 - ✓ Error handling with MongoDB
+
+### Lab 7 - Mongoose & MVC Architecture
+- ✓ Mongoose schema design and validation
+- ✓ MVC architecture (Model-View-Controller)
+- ✓ Mongoose middleware and query helpers
+- ✓ Schema relationships with references
+- ✓ Virtual properties and instance methods
+- ✓ Migration from Vitest testing framework
+- ✓ Unit tests (pure functions)
+- ✓ Integration tests (full API flow)
+- ✓ Test coverage ≥ 80%
+
 
 ## Next Steps
 
